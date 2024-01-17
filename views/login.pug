@@ -1,0 +1,16 @@
+doctype html
+
+html
+    head
+        title Log in
+        script(src='https://unpkg.com/htmx.org@1.9.10' integrity='sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC' crossorigin='anonymous')
+    body
+        form(action="/login", method="POST", enctype="application/x-www-form-urlencoded")
+            label(for="username") Username:
+            input(type="text", name="username", id="username", value="berkOzkan", required)
+            label(for="password") Password:
+            input(type="password", name="password", id="password", value="123", required)
+            button(type="submit") Login
+
+        p Don't have an account?
+        a(href="/signup") Sign up

@@ -1,0 +1,14 @@
+<!DOCTYPE html><html><head><title>TopraTek</title><script src="https://unpkg.com/htmx.org@1.9.10" integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC" crossorigin="anonymous"></script></head><body><form hx-post="/location" hx-trigger="submit"><!-- Location Section--><section><h3>Location</h3><label for="locationTitle">Location Title:</label><input type="text" name="locationTitle" id="locationTitle" value="DummyLocationTitle" required><label for="locationDescription">Location Description:</label><input type="text" name="locationDescription" id="locationDescription" value="DummyLocationDescription" required></section><input type="checkbox" name="currentCropChoiceBtn" id="currentCropChoiceBtn"><label for="currentCropChoiceBtn">Add Current Crop</label><br><!-- Crop Section--><section id="currentCrop"><h3>Current Crop</h3><label for="cropName">Crop Name:</label><input type="text" name="cropName" id="cropName" value="DummyCropName" required><label for="cropDescription">Crop Description:</label><input type="text" name="cropDescription" id="cropDescription" value="DummyCropDescription" required><label for="plantedDate">Planted Date:</label><input type="date" name="plantedDate" id="plantedDate" value="2024-01-01" required><label for="plantedAmount">Planted Amount:</label><input type="number" name="plantedAmount" id="plantedAmount" value="100" required><label for="expectedHarvestDate">Expected Harvest Date:</label><input type="date" name="expectedHarvestDate" id="expectedHarvestDate" value="2024-06-30" required></section><!-- Destination Section--><label for="destination">Destination:</label><select name="destination" id="destination" required><option value="option1">Option 1</option><option value="option2">Option 2</option><!-- Add more options as needed--></select><!-- History Section--><section><h3>History Section</h3><label for="groupName">Group Name:</label><input type="text" name="groupName" id="groupName" value="DummyGroupName" required></section><!-- Submit Button--><button type="submit">Submit</button></form><script>const currentCropRadioBtn = document.getElementById("currentCropChoiceBtn");
+const currentCropSection = document.getElementById("currentCrop");
+currentCropRadioBtn.addEventListener("click", () => {
+    console.log(`clicked ${currentCropRadioBtn}`)
+    if (currentCropRadioBtn.checked) {
+        currentCropSection.style.display = "none";
+    } else {
+        currentCropSection.style.display = "block";
+    }
+})
+
+
+
+</script><div id="sidebar"></div></body></html>

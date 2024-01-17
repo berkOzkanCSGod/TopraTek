@@ -1,0 +1,28 @@
+doctype html
+
+html
+    head
+        title Sign up
+        script(src='https://unpkg.com/htmx.org@1.9.10' integrity='sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC' crossorigin='anonymous')
+
+    body
+        form(action="/signup" method="post")
+            label(for="username") Username:
+            input(type="text", name="username", id="username", value="berkOzkan" required)
+
+            label(for="email") Email:
+            input(type="text", name="email", id="email", value="b@gmail.com" , required)
+
+            label(for="password") Password:
+            input(type="password", name="password", id="password", value="123" , required)
+
+            label(for="confirmPassword") Confirm Password:
+            input(type="password", name="confirmPassword", id="confirmPassword", value="123" , required)
+
+            button(type="submit") Sign Up
+
+        p Already have an account?
+        a(href="/login") Login
+
+        div#error-box
+            p errors
