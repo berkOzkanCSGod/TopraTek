@@ -16,7 +16,8 @@ const AuthController = {
 
         if (user) {
             if(await bcrypt.compare(password, user.password)){
-                const token = jwt.sign(user,"hi",{expiresIn: 3600})
+                const userToken = {id: user._id, username: user.username, settings: user.settings}
+                const token = jwt.sign(userToken,"hi",{expiresIn: 3600})
 
                     res.cookie("token", token, {
                         httpOnly: true

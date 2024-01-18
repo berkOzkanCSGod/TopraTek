@@ -6,7 +6,8 @@ html
         script(src='https://unpkg.com/htmx.org@1.9.10' integrity='sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC' crossorigin='anonymous')
 
     body
-
+        p(style="color: red; position: fixed; bottom: 0; left: 0;")#error error
+        p#notError not error
         form(hx-post="/location" hx-trigger="submit")
             // Location Section
             section
@@ -23,52 +24,85 @@ html
             br
 
             // Crop Section
-            section#currentCrop
+            section#currentCrop(style="display: none;")
 
                 h3 Current Crop
                 label(for="cropName") Crop Name:
-                input(type="text", name="cropName", id="cropName", value="DummyCropName" , required)
+                input(type="text", name="cropName", id="cropName")
 
                 label(for="cropDescription") Crop Description:
-                input(type="text", name="cropDescription", id="cropDescription", value="DummyCropDescription" , required)
+                input(type="text", name="cropDescription", id="cropDescription")
 
                 label(for="plantedDate") Planted Date:
-                input(type="date", name="plantedDate", id="plantedDate", value="2024-01-01" , required)
+                input(type="date", name="plantedDate", id="plantedDate")
 
                 label(for="plantedAmount") Planted Amount:
-                input(type="number", name="plantedAmount", id="plantedAmount", value="100" , required)
+                input(type="number", name="plantedAmount", id="plantedAmount")
 
                 label(for="expectedHarvestDate") Expected Harvest Date:
-                input(type="date", name="expectedHarvestDate", id="expectedHarvestDate", value="2024-06-30" , required)
+                input(type="date", name="expectedHarvestDate", id="expectedHarvestDate")
+
+            input(type="checkbox" name="destinationChoiceBtn" id="destinationChoiceBtn")
+            label(for="destinationChoiceBtn") Add Destination
+            br
 
             // Destination Section
-            label(for="destination") Destination:
-            select(name="destination", id="destination", required)
-                option(value="option1") Option 1
-                option(value="option2") Option 2
-                // Add more options as needed
+            section#destinationSection(style="display: none;")
+                h3 Destination
+                label(for="destination") Destination:
+                select(name="destination", id="destination")
+                    option(value="option1") Option 1
+                    option(value="option2") Option 2
+                    // Add more options as needed
 
+
+            input(type="checkbox" name="historyChoiceBtn" id="historyChoiceBtn")
+            label(for="historyChoiceBtn") Add History
+            br
             // History Section
-            section
+            section#historySection(style="display: none;")
                 h3 History Section
+
+            //group name
+            section
+                h3 Group Name
                 label(for="groupName") Group Name:
-                input(type="text", name="groupName", id="groupName", value="DummyGroupName" , required)
+                input(type="text", name="groupName", id="groupName")
 
             // Submit Button
             button(type="submit") Submit
 
         script.
+
+            document.addEventListener('htmx:response', function (event) {
+                let responseData = event.detail.response;
+                let status = responseData.status;
+                let message = responseData.message;
+
+                console.log(status.toUpperCase() + ': ' + message);
+            });
+            function setupRadioBtnListener(radioBtn, section) {
+                radioBtn.addEventListener("change", () => {
+                    console.log(`clicked ${radioBtn}`);
+                    if (radioBtn.checked) {
+                        section.style.display = "block";
+                    } else {
+                        section.style.display = "none";
+                    }
+            });
+            }
+
             const currentCropRadioBtn = document.getElementById("currentCropChoiceBtn");
             const currentCropSection = document.getElementById("currentCrop");
-            currentCropRadioBtn.addEventListener("click", () => {
-                console.log(`clicked ${currentCropRadioBtn}`)
-                if (currentCropRadioBtn.checked) {
-                    currentCropSection.style.display = "none";
-                } else {
-                    currentCropSection.style.display = "block";
-                }
-            })
+            setupRadioBtnListener(currentCropRadioBtn, currentCropSection);
 
+            const destinationRadioBtn = document.getElementById("destinationChoiceBtn");
+            const destinationSection = document.getElementById("destinationSection");
+            setupRadioBtnListener(destinationRadioBtn, destinationSection);
+
+            const historyRadioBtn = document.getElementById("historyChoiceBtn");
+            const historySection = document.getElementById("historySection");
+            setupRadioBtnListener(historyRadioBtn, historySection);
 
 
 
