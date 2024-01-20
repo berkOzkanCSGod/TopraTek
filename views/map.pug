@@ -1,14 +1,25 @@
 doctype html
 
+
+mixin sidebarLocationFactory(group, groupName)
+    ul= groupName
+        each location in group || {}
+            li(locationId = `${location.id}`, title=`${location.locationTitle}`, groupName=`${groupName}`).locationItem= location.locationTitle
+                button(type="button"
+                    hx-post="/removeLocation"
+                    hx-target="#sidebar"
+                    hx-trigger="click"
+                    hx-swap="outerHTML"
+                    hx-vars=`{"locationId": "${location.id}", "title": "${location.locationTitle}", "groupName": "${groupName}"}`
+                    hx-debug) DEL
+
 html
     head
         title TopraTek
         script(src='https://unpkg.com/htmx.org@1.9.10' integrity='sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC' crossorigin='anonymous')
 
     body
-        p(style="color: red; position: fixed; bottom: 0; left: 0;")#error error
-        p#notError not error
-        form(hx-post="/location" hx-trigger="submit")
+        form(hx-post="/location" hx-trigger="submit" hx-target="#sidebar" hx-swap="outerHTML")
             // Location Section
             section
                 h3 Location
@@ -72,6 +83,19 @@ html
             // Submit Button
             button(type="submit") Submit
 
+
+        p ---------------------- Sidebar ----------------------
+        ul#sidebar Locations
+            each group, groupName in groups || {}
+                +sidebarLocationFactory(group, groupName)
+
+
+
+
+
+
+
+
         script.
 
             document.addEventListener('htmx:response', function (event) {
@@ -81,6 +105,8 @@ html
 
                 console.log(status.toUpperCase() + ': ' + message);
             });
+
+
             function setupRadioBtnListener(radioBtn, section) {
                 radioBtn.addEventListener("change", () => {
                     console.log(`clicked ${radioBtn}`);
@@ -103,7 +129,3 @@ html
             const historyRadioBtn = document.getElementById("historyChoiceBtn");
             const historySection = document.getElementById("historySection");
             setupRadioBtnListener(historyRadioBtn, historySection);
-
-
-
-        div#sidebar
