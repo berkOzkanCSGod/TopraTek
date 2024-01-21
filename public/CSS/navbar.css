@@ -1,0 +1,49 @@
+:root {
+    --navbar-height: 2.5em;
+    --navbar-margin: 1.25em;
+}
+
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--navbar-height);
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    padding: 0.3125em;
+    z-index: 1000;
+    transition: background-color 0.3s ease;
+}
+
+.navbar__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.3125em var(--navbar-margin);
+}
+
+.navbar__brand {
+    color: var(--text-color);
+    font-weight: bold;
+}
+
+.navbar__links {
+    display: flex;
+}
+
+.navbar__link {
+    text-decoration: none;
+    color: var(--third-color);
+    padding: 0.3125em;
+    margin: 0 var(--navbar-margin);
+    border-radius: var(--border-radius);
+    transition: color 0.3s ease;
+}
+
+.navbar__link:hover {
+    color: var(--fourth-color);
+    background-color: var(--secondary-color);
+}
+

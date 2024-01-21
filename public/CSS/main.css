@@ -1,0 +1,23 @@
+:root {
+    --primary-color: #092635;
+    --secondary-color: rgb(27, 66, 66);
+    --third-color: #5C8374;
+    --fourth-color: #9EC8B9;
+    --text-color: white;
+    /*    light and dark modes to be added  */
+    --border-radius: 5px
+}
+
+
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    padding-top: var(--navbar-height);
+}
+
+.main-container {
+    margin-left: var(--sidebar-width);
+    padding: 1.25em;
+    height: calc(100vh - var(--navbar-height));
+    box-sizing: border-box;
+}

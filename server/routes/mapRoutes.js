@@ -28,10 +28,8 @@ router.get('/groups', cookieAuthenticator.authenticateToken, async (req, res) =>
 })
 
 router.get('/', cookieAuthenticator.authenticateToken, mapController.loadMap);
-
-// router.get('/', cookieAuthenticator.authenticateToken, (req, res) => {
-//     const groups = 0;
-//     res.render('map', {groups: groups});
-// })
+router.get('/settings', cookieAuthenticator.authenticateToken, async (req, res) => {
+    return true;
+});
 
 export default router;
