@@ -3,6 +3,11 @@ doctype html
 
 mixin sidebarLocationFactory(group, groupName)
     ul= groupName
+        button(type="button"
+                id = `${groupName}`
+                onclick=`expandGroup(\'${groupName}\')`) EXP
+
+
         each location in group || {}
             li(locationId = `${location.id}`, title=`${location.locationTitle}`, groupName=`${groupName}`).locationItem= location.locationTitle
                 button(type="button"
@@ -10,8 +15,7 @@ mixin sidebarLocationFactory(group, groupName)
                     hx-target="#sidebar"
                     hx-trigger="click"
                     hx-swap="outerHTML"
-                    hx-vars=`{"locationId": "${location.id}", "title": "${location.locationTitle}", "groupName": "${groupName}"}`
-                    hx-debug) DEL
+                    hx-vars=`{"locationId": "${location.id}", "title": "${location.locationTitle}", "groupName": "${groupName}"}`) DEL
 
 html
     head
@@ -19,7 +23,12 @@ html
         script(src='https://unpkg.com/htmx.org@1.9.10' integrity='sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC' crossorigin='anonymous')
 
     body
-        form(hx-post="/location" hx-trigger="submit" hx-target="#sidebar" hx-swap="outerHTML")
+
+
+        button(type="button" onclick="groups()") G
+
+
+        form(hx-post="/addLocation" hx-trigger="submit" hx-target="#sidebar" hx-swap="outerHTML")
             // Location Section
             section
                 h3 Location
@@ -90,12 +99,6 @@ html
                 +sidebarLocationFactory(group, groupName)
 
 
-
-
-
-
-
-
         script.
 
             document.addEventListener('htmx:response', function (event) {
@@ -129,3 +132,16 @@ html
             const historyRadioBtn = document.getElementById("historyChoiceBtn");
             const historySection = document.getElementById("historySection");
             setupRadioBtnListener(historyRadioBtn, historySection);
+
+            function expandGroup(groupName) {
+                fetch(`/expandGroup/${groupName}`).then(() => {
+                    window.location.href = `/expandGroup/${groupName}`;
+                });
+            }
+
+            function groups() {
+                fetch('/groups').then(() => {
+                    window.location.href = '/groups';
+                });
+            }
+

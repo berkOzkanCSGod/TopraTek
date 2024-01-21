@@ -8,6 +8,11 @@ async function getUser(id) {
     return collection.findOne({_id: new ObjectId(id)});
 }
 
+async function getAllGroups(id) {
+    const user = await getUser(id);
+    return user.groups;
+}
+
 function findGroup(groups, groupName) {
     if (groups.hasOwnProperty(groupName)) {
         return groups[groupName];
@@ -15,11 +20,16 @@ function findGroup(groups, groupName) {
     return false;
 }
 
-function checkTitleDuplicate(group, locationTitle) {
-    if (group) {
-        return group.some(function(element) {
-            return element.locationTitle === locationTitle;
-        });
+function checkTitleDuplicate(groups, locationTitle) {
+    for (const groupName in groups) {
+        const groupArray = groups[groupName];
+
+        for (const locationObject of groupArray) {
+            if (locationObject.locationTitle === locationTitle) {
+                console.log(`Location title "${locationTitle}" found in group "${groupName}".`);
+                return true;
+            }
+        }
     }
     return false;
 }
@@ -30,14 +40,17 @@ async function addLocation(userId, {locationInfo}){
     locationInfo = { id: new ObjectId(), ...locationInfo }
     if (user) {
         const groups = user.groups;
+
+        if (checkTitleDuplicate(groups, locationInfo.locationTitle)) {
+            return {success: false, message: `Could not add location: ${locationInfo.groupName}, location name is already taken.`, groups: groups};
+        }
+
         if (locationInfo.groupName){
             const group = findGroup(groups, locationInfo.groupName);
+
             if (group) {
                 //groups exists
-                if (checkTitleDuplicate(groups[group], locationInfo.locationTitle)) {
-                    return {success: false, message: `Could not add location: ${locationInfo.groupName}, location name if already taken.`, groups: groups};
-                }
-                groups[group].push(locationInfo);
+                group.push(locationInfo);
             } else {
                 //new group
                 groups[locationInfo.groupName] = [];
@@ -45,10 +58,9 @@ async function addLocation(userId, {locationInfo}){
             }
         } else {
             //group name is blank
-            if (checkTitleDuplicate(groups['no-group'], locationInfo.locationTitle)) {
-                return {success: false, message: `Could not add location: ${locationInfo.groupName}, location name if already taken.`, groups: groups};
-            }
+            locationInfo.groupName = 'no-group';
             groups['no-group'].push(locationInfo);
+
         }
 
         const filter = { _id: new ObjectId(userId) };
@@ -69,13 +81,21 @@ async function removeLocation (userId, {locationInfo}) {
     const user = await getUser(userId);
     const groups = user.groups;
 
-    console.log({groups})
     if (groups.hasOwnProperty(locationInfo.groupName)) {
-        console.log("found match")
-        groups[locationInfo.groupName] = groups[locationInfo.groupName].filter(loc => !loc.id.equals(locationInfo.locationId));
+        let i = 0
+        for (const location in groups[locationInfo.groupName]) {
+            let l = groups[locationInfo.groupName][location];
+
+            if (l.id.toString() === locationInfo.locationId){
+                groups[locationInfo.groupName].splice(i, 1);
+                if (groups[locationInfo.groupName].length <= 0 && locationInfo.groupName !== 'no-group'){
+                    delete groups[locationInfo.groupName];
+                }
+                break;
+            }
+            i++;
+        }
     }
-    console.log("-------- groups --------")
-    console.log({groups})
 
     const filter = { _id: new ObjectId(userId) };
     const update = { $set: { groups: groups } };
@@ -85,9 +105,17 @@ async function removeLocation (userId, {locationInfo}) {
 
     return {success: true, message: `Successfully removed ${locationInfo.groupName}.`, groups: groups};
 }
+async function expandGroup (userId, groupName) {
+    const user = await getUser(userId);
+    const groups = user.groups;
+    return groups[groupName] || [];
+}
+
 
 export default {
     addLocation,
     removeLocation,
-    getUser
+    expandGroup,
+    getUser,
+    getAllGroups
 };

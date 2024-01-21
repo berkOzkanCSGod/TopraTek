@@ -11,13 +11,29 @@ function getUserId(req) {
 
 function sidebarLocationFactory(groups) {
     let html = `<ul id="sidebar"> Locations`;
-    // console.log(groups)
-    for (const group in groups) {
-        // console.log(groups[group])
-        html += `<ul> groupName`;
+
+    let i = 0
+    for (const [group, groupName] of Object.entries(groups)) {
+        html += `<ul> ${Object.keys(groups)[i]}`;
+        html += `<button type="button" 
+                        hx-get="/expandGroup" 
+                        hx-trigger="click" 
+                        hx-vars='{"groupName": "undefined"}'>
+                    EXP
+                </button>`;
+        i++;
         for (const location in groups[group]) {
             const g = groups[group];
-            const liElement = `<li class="locationItem" locationId="${g[location].id}" title="${g[location].locationTitle}" groupName="groupname"> ${g[location].locationTitle} <button type="button" hx-post="/removeLocation" hx-target="#sidebar" hx-swap="outerHTML"  hx-vars='{"locationId": "${location.id}", "title": "${location.locationTitle}", "groupName": "groupName"}'>DEL</button> </li>`;
+            // const liElement = `<li class="locationItem" locationId="${g[location].id}" title="${g[location].locationTitle}" groupName="${g[location].groupName}"> ${g[location].locationTitle} <button type="button" hx-post="/removeLocation" hx-target="#sidebar" hx-swap="outerHTML"  hx-vars='{"locationId": "${location.id}", "title": "${location.locationTitle}", "groupName": "${g[location].groupName}"}'>DEL</button> </li>`;
+            const liElement = `
+                  <li class="locationItem" locationId="${g[location].id}" title="${g[location].locationTitle}" groupName="${g[location].groupName}">
+                      ${g[location].locationTitle}
+                      <button type="button" hx-post="/removeLocation" hx-target="#sidebar" hx-swap="outerHTML"
+                              hx-vars='{"locationId": "${g[location].id}", "title": "${g[location].locationTitle}", "groupName": "${g[location].groupName}"}'>
+                        DEL
+                      </button>
+                  </li>`;
+
             html += liElement;
         }
         html += `</ul>`;
@@ -50,8 +66,18 @@ const mapController = {
         const locationInfo = req.body;
         const userToken = getUserId(req);
         const response = await mapModel.removeLocation(userToken.id, {locationInfo});
-        console.log(response.groups)
         return sidebarLocationFactory(response.groups);
+    },
+    expandGroup: async (req, res) => {
+        const userToken = getUserId(req);
+        return await mapModel.expandGroup(userToken.id, req.params.groupName)
+    },
+    getAllGroups: async (req, res) => {
+        const userToken = getUserId(req);
+        if (userToken) {
+            return await mapModel.getAllGroups(userToken.id);
+        }
+        return false;
     }
 };
 

@@ -1,0 +1,28 @@
+// views/groups.pug
+doctype html
+html
+    head
+        title Group Information
+    body
+        h1 Group Information
+
+        each group in groups || []
+            .group-container
+                p Group ID: #{group.id}
+                p Location Title: #{group.locationTitle}
+                p Location Description: #{group.locationDescription}
+                p Crop Name: #{group.cropName}
+                p Crop Description: #{group.cropDescription}
+                p Planted Date: #{group.plantedDate}
+                p Planted Amount: #{group.plantedAmount}
+                p Expected Harvest Date: #{group.expectedHarvestDate}
+                p Destination: #{group.destination}
+                p Group Name: #{group.groupName}
+
+        // Add styling if needed
+        style.
+            .group-container {
+                border: 1px solid #ddd;
+                padding: 10px;
+                margin-bottom: 10px;
+            }
