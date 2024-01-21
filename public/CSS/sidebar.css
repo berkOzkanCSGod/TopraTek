@@ -1,66 +1,67 @@
 :root {
-    --sidebar-width: 15em;
+    --sidebar-width: 350px;
 }
 
-.sidebar {
+#sidebar {
     width: var(--sidebar-width);
-    padding: 0.625em;
-    background-color: var(--secondary-color);
-    color: var(--text-color);
-    height: calc(100vh - var(--navbar-height));
+    min-width: 150px;
+    height: calc(100vh - var(--nav-height) - 0px);
+    background-color: var(--primary-color);
+}
+
+ul.sidebar-group {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
     overflow-y: auto;
-    position: fixed;
-    top: var(--navbar-height);
-    left: 0;
-    bottom: 0;
-    z-index: 1;
+    border-bottom: 2px solid var(--secondary-color);
+}
+
+li.sidebar-group-title {
+    padding: 10px;
+    color: var(--text-color);
+    font-size: 2em;
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.sidebar-group {
-    list-style: none;
-    margin-bottom: 0.625em;
+li.sidebar-location {
+    padding: 10px;
+    font-size: 1em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.sidebar-group-title {
-    font-weight: bold;
-    margin-bottom: 0.3125em;
-    position: relative;
-}
 
-.sidebar-group-title button {
-    position: absolute;
-    right: 0;
-    top: 0;
-    background: none;
-    border: none;
+span.sidebar-location-title {
+    display: block;
+    margin-bottom: 5px;
     color: var(--third-color);
-    cursor: pointer;
-    margin-left: 0.3125em;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
-.sidebar-group-title button:hover {
-    color: var(--fourth-color);
+
+.location-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.sidebar-location {
-    margin-bottom: 0.3125em;
-    position: relative;
-}
-
-.sidebar-location button {
-    position: absolute;
-    right: 0;
-    top: 0;
-    background: none;
-    border: none;
+button.sidebar-action-button {
+    background-color: var(--primary-color);
     color: var(--third-color);
+    /*padding: 5px 10px;*/
+    padding: 0;
+    border: none;
     cursor: pointer;
-    margin-left: 0.3125em;
+    margin-right: 5px;
+    border-radius: var(--border-radius);
 }
 
-.sidebar-location button:hover {
-    color: var(--fourth-color);
+button.sidebar-action-button:hover img {
+    filter: brightness(3.5);
 }
-

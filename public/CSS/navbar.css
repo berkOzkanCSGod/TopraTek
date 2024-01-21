@@ -1,49 +1,52 @@
 :root {
-    --navbar-height: 2.5em;
-    --navbar-margin: 1.25em;
+    --nav-height: 36px;
+    --nav-text-padding: 50px;
 }
 
-
-.navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: var(--navbar-height);
+nav {
+    width: 100vw;
+    height: var(--nav-height);
     background-color: var(--primary-color);
     color: var(--text-color);
-    padding: 0.3125em;
-    z-index: 1000;
-    transition: background-color 0.3s ease;
-}
 
-.navbar__container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.3125em var(--navbar-margin);
-}
+    padding: 5px;
 
-.navbar__brand {
-    color: var(--text-color);
+    position: relative;
+
+    border-bottom: 2px solid var(--secondary-color);
+
     font-weight: bold;
 }
 
-.navbar__links {
+.nav_brand {
+    padding-left: var(--nav-text-padding);
+}
+
+.nav_links {
     display: flex;
+    gap: 20px;
+    padding-right: var(--nav-text-padding);
 }
 
-.navbar__link {
+.nav_link {
     text-decoration: none;
-    color: var(--third-color);
-    padding: 0.3125em;
-    margin: 0 var(--navbar-margin);
+    color: var(--nav-text-padding);
+    margin: 0;
+    display: inline-block;
+    padding: 10px 20px;
+    border: 2px solid var(--nav-text-padding);
     border-radius: var(--border-radius);
-    transition: color 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    background-color: var(--primary-color);
 }
 
-.navbar__link:hover {
-    color: var(--fourth-color);
-    background-color: var(--secondary-color);
+.nav_link:hover {
+    filter: brightness(1.5);
 }
 
+img.icon {
+    width: 20px;
+}

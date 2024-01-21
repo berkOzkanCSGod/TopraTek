@@ -1,22 +1,6 @@
 doctype html
 
 
-//mixin sidebarLocationFactory(group, groupName)
-//    ul= groupName
-//        button(type="button"
-//                id = `${groupName}`
-//                onclick=`expandGroup(\'${groupName}\')`) EXP
-//
-//
-//        each location in group || {}
-//            li(locationId = `${location.id}`, title=`${location.locationTitle}`, groupName=`${groupName}`).locationItem= location.locationTitle
-//                button(type="button"
-//                    hx-post="/removeLocation"
-//                    hx-target="#sidebar"
-//                    hx-trigger="click"
-//                    hx-swap="outerHTML"
-//                    hx-vars=`{"locationId": "${location.id}", "title": "${location.locationTitle}", "groupName": "${groupName}"}`) DEL
-
 html
     head
         title TopraTek.com
@@ -27,9 +11,9 @@ html
     body
 
         include navbar
-        include sidebar
 
         main.map-container
+            include sidebar
             p gfhds
             // Your map content goes here
 
@@ -99,49 +83,44 @@ html
         //    button(type="submit") Submit
         //
 
-        //p ---------------------- Sidebar ----------------------
-        //ul#sidebar Locations
-        //    each group, groupName in groups || {}
-        //        +sidebarLocationFactory(group, groupName)
 
-
-        script.
-
-            document.addEventListener('htmx:response', function (event) {
-                let responseData = event.detail.response;
-                let status = responseData.status;
-                let message = responseData.message;
-
-                console.log(status.toUpperCase() + ': ' + message);
-            });
-
-
-            function setupRadioBtnListener(radioBtn, section) {
-                radioBtn.addEventListener("change", () => {
-                    console.log(`clicked ${radioBtn}`);
-                    if (radioBtn.checked) {
-                        section.style.display = "block";
-                    } else {
-                        section.style.display = "none";
-                    }
-            });
-            }
-
-            const currentCropRadioBtn = document.getElementById("currentCropChoiceBtn");
-            const currentCropSection = document.getElementById("currentCrop");
-            setupRadioBtnListener(currentCropRadioBtn, currentCropSection);
-
-            const destinationRadioBtn = document.getElementById("destinationChoiceBtn");
-            const destinationSection = document.getElementById("destinationSection");
-            setupRadioBtnListener(destinationRadioBtn, destinationSection);
-
-            const historyRadioBtn = document.getElementById("historyChoiceBtn");
-            const historySection = document.getElementById("historySection");
-            setupRadioBtnListener(historyRadioBtn, historySection);
-
-            function expandGroup(groupName) {
-                fetch(`/expandGroup/${groupName}`).then(() => {
-                    window.location.href = `/expandGroup/${groupName}`;
-                });
-            }
+        //script.
+            //
+            //document.addEventListener('htmx:response', function (event) {
+            //    let responseData = event.detail.response;
+            //    let status = responseData.status;
+            //    let message = responseData.message;
+            //
+            //    console.log(status.toUpperCase() + ': ' + message);
+            //});
+            //
+            //
+            //function setupRadioBtnListener(radioBtn, section) {
+            //    radioBtn.addEventListener("change", () => {
+            //        console.log(`clicked ${radioBtn}`);
+            //        if (radioBtn.checked) {
+            //            section.style.display = "block";
+            //        } else {
+            //            section.style.display = "none";
+            //        }
+            //});
+            //}
+            //
+            //const currentCropRadioBtn = document.getElementById("currentCropChoiceBtn");
+            //const currentCropSection = document.getElementById("currentCrop");
+            //setupRadioBtnListener(currentCropRadioBtn, currentCropSection);
+            //
+            //const destinationRadioBtn = document.getElementById("destinationChoiceBtn");
+            //const destinationSection = document.getElementById("destinationSection");
+            //setupRadioBtnListener(destinationRadioBtn, destinationSection);
+            //
+            //const historyRadioBtn = document.getElementById("historyChoiceBtn");
+            //const historySection = document.getElementById("historySection");
+            //setupRadioBtnListener(historyRadioBtn, historySection);
+            //
+            //function expandGroup(groupName) {
+            //    fetch(`/expandGroup/${groupName}`).then(() => {
+            //        window.location.href = `/expandGroup/${groupName}`;
+            //    });
+            //}
 
