@@ -1,12 +1,15 @@
 :root {
     --sidebar-width: 350px;
+    --sidebar-height: calc(100vh - var(--nav-height) - 15px);
 }
 
 #sidebar {
     width: var(--sidebar-width);
     min-width: 150px;
-    height: calc(100vh - var(--nav-height) - 0px);
+    height: var(--sidebar-height);
+    border: 2px solid var(--secondary-color);
     background-color: var(--primary-color);
+    overflow: hidden;
 }
 
 ul.sidebar-group {

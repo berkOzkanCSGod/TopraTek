@@ -1,0 +1,179 @@
+.map-container {
+    display: flex;
+    flex-direction: column;
+    border: var(--map-border-thickness) solid var(--secondary-color);
+    width: calc(100vw - var(--sidebar-width));
+    height: var(--sidebar-height);
+    padding: 0;
+    margin: 0;
+
+}
+
+.add-loc-display {
+    border: 1px solid blue;
+    display: none; /* block is opposite */
+}
+
+.map {
+    /*border: 1px solid red;*/
+    height: var(--sidebar-height);
+}
+
+
+.add-location-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background-color: transparent;
+    border: 4px solid var(--primary-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    overflow: hidden;
+    transition: background 0.2s ease;
+}
+
+.add-location-container.clicked {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background-color: green;
+    border: 4px solid green;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    overflow: hidden;
+    transition: background 0.2s ease;
+}
+
+.add-location-container::before,
+.add-location-container::after {
+    content: '';
+    position: absolute;
+    background-color: var(--primary-color);
+    transition: background-color 0.2s ease;
+}
+
+.add-location-container::before {
+    width: 60%;
+    height: 5px;
+    top: 50%;
+    left: 20%;
+    transform: translateY(-50%);
+    border-radius: var(--border-radius);
+}
+
+.add-location-container::after {
+    width: 5px;
+    height: 60%;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: var(--border-radius);
+}
+
+
+.add-location-container.clicked::before {
+    transform: rotate(45deg);
+    width: 30%;
+    height: 5px;
+    top: 55%;
+    background-color: var(--text-color);
+}
+
+.add-location-container.clicked::after {
+    transform: rotate(45deg);
+    height: 52.5%;
+    width: 5px;
+    top: 25%;
+    left: 55%;
+    background-color: var(--text-color);
+}
+
+
+.add-location-container:not(.clicked):hover {
+    background-color: var(--primary-color);
+}
+
+.add-location-container:hover::before,
+.add-location-container:hover::after {
+    background-color: #fff;
+}
+
+#add-loc-display {
+    display: block;
+}
+
+#add-loc-display.hide {
+    display: none;
+}
+
+
+/*/*/
+
+
+.cancel-add-location-container {
+    position: fixed;
+    bottom: 20px;
+    right: 100px;
+    width: 60px;
+    height: 60px;
+    background-color: red;
+    border: 4px solid red;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    overflow: hidden;
+    transition: background 0.2s ease;
+}
+
+.cancel-add-location-container::before,
+.cancel-add-location-container::after {
+    content: '';
+    position: absolute;
+    background-color: var(--text-color);
+    transition: background-color 0.2s ease;
+}
+
+.cancel-add-location-container::before {
+    width: 60%;
+    height: 5px;
+    top: 50%;
+    left: 20%;
+    transform: translateY(-50%) rotate(45deg);
+    border-radius: var(--border-radius);
+}
+
+.cancel-add-location-container::after {
+    width: 5px;
+    height: 60%;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+    border-radius: var(--border-radius);
+}
+/**/
+.cancel-add-location-container.hide {
+    display: none;
+}
+
+.cancel-add-location-container::before.hide,
+.cancel-add-location-container::after.hide {
+    display: none;
+}
+
+.loc-btn-container {
+    display: flex;
+}
+
+

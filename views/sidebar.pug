@@ -11,8 +11,8 @@ mixin sidebarLocationFactory(group, groupName)
                         img.icon(src="./icons/goto-icon.png")
                     button.sidebar-action-button(type="button")
                         img.icon(src="./icons/expand-icon.svg")
-                    button.sidebar-action-button(type="button", hx-post="/removeLocation", hx-target="#sidebar", hx-trigger="click", hx-swap="outerHTML", hx-vars=`{"locationId": "${location.id}", "title": "${location.locationTitle}", "groupName": "${groupName}"`)
-                        img.icon(src="./icons/del-icon.png")
+                    button.sidebar-action-button(type="button", data-location-id=`${location.id}` data-location-title=`${location.locationTitle}` data-location-groupName=`${groupName}`)
+                        img.icon(src="./icons/del-icon.png" data-location-id=`${location.id}` data-location-title=`${location.locationTitle}` data-location-groupName=`${groupName}`)
 
 link(rel='stylesheet', href='./CSS/sidebar.css')
 
@@ -20,9 +20,3 @@ ul#sidebar
     each group, groupName in groups || {}
         +sidebarLocationFactory(group, groupName)
 
-script.
-    function expandGroup(groupName) {
-       fetch(`/expandGroup/${groupName}`).then(() => {
-           window.location.href = `/expandGroup/${groupName}`;
-       });
-    }

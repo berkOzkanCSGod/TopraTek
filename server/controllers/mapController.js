@@ -10,28 +10,34 @@ function getUserId(req) {
 }
 
 function sidebarLocationFactory(groups) {
-    let html = `<ul id="sidebar"> Locations`;
+    let html = `<ul id="sidebar">`;
 
     let i = 0
-    for (const [group, groupName] of Object.entries(groups)) {
-        html += `<ul> ${Object.keys(groups)[i]}`;
-        html += `<button type="button" 
-                        hx-get="/expandGroup" 
-                        hx-trigger="click" 
-                        hx-vars='{"groupName": "undefined"}'>
-                    EXP
-                </button>`;
+    for (const [groupName, group] of Object.entries(groups)) {
+        const groupTitle = Object.keys(groups)[i] === 'no-group' ? '' : Object.keys(groups)[i];
+        html += `<ul class="sidebar-group">`;
+        html += `<li class="sidebar-group-title"> ${groupName}
+                    <button class="sidebar-action-button" type="button" id=\'${groupName}\' onclick=\"expandGroup('${groupName}')\">
+                        <img class="icon" src="./icons/expand-group-icon.svg">
+                    </button>
+                </li>`;
         i++;
-        for (const location in groups[group]) {
-            const g = groups[group];
+        for (const location in groups[groupName]) {
+            const g = groups[groupName];
             // const liElement = `<li class="locationItem" locationId="${g[location].id}" title="${g[location].locationTitle}" groupName="${g[location].groupName}"> ${g[location].locationTitle} <button type="button" hx-post="/removeLocation" hx-target="#sidebar" hx-swap="outerHTML"  hx-vars='{"locationId": "${location.id}", "title": "${location.locationTitle}", "groupName": "${g[location].groupName}"}'>DEL</button> </li>`;
             const liElement = `
-                  <li class="locationItem" locationId="${g[location].id}" title="${g[location].locationTitle}" groupName="${g[location].groupName}">
-                      ${g[location].locationTitle}
-                      <button type="button" hx-post="/removeLocation" hx-target="#sidebar" hx-swap="outerHTML"
-                              hx-vars='{"locationId": "${g[location].id}", "title": "${g[location].locationTitle}", "groupName": "${g[location].groupName}"}'>
-                        DEL
-                      </button>
+                  <li class="sidebar-location" locationId="${g[location].id}" title="${g[location].locationTitle}" groupName="${g[location].groupName}">
+                      <span class="sidebar-location-title">${g[location].locationTitle}</span>
+                      <div class="location-buttons">
+                            <button class="sidebar-action-button" type="button">
+                                <img class="icon" src="./icons/goto-icon.png">
+                            </button>
+                            <button class="sidebar-action-button" type="button">
+                                <img class="icon" src="./icons/expand-icon.svg">
+                            </button>
+                            <button class=\"sidebar-action-button\" type=\"button\" data-location-id=\"${g[location].id}\" data-location-title=\"${g[location].locationTitle}\" data-location-groupName=\"${g[location].groupName}\">
+                                <img class="icon" src="./icons/del-icon.png" data-location-id=\"${g[location].id}\" data-location-title=\"${g[location].locationTitle}\" data-location-groupName=\"${g[location].groupName}\">
+                            </button>
                   </li>`;
 
             html += liElement;

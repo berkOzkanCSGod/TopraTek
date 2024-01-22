@@ -5,6 +5,8 @@ html
     head
         title TopraTek.com
         link(rel='stylesheet', href='./CSS/main.css')
+        link(rel='stylesheet', href='./CSS/map.css')
+        script(type="text/javascript" src="./JS/map.js")
 
         script(src='https://unpkg.com/htmx.org@1.9.10' integrity='sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC' crossorigin='anonymous')
 
@@ -12,115 +14,80 @@ html
 
         include navbar
 
-        main.map-container
+        main#main
             include sidebar
-            p gfhds
-            // Your map content goes here
+
+            .map-container
+                div.add-loc-display.hide#add-loc-display
+                    form#add-loc-form
+                        //hx-post="/addLocation" hx-trigger="submit" hx-target="#sidebar" hx-swap="outerHTML"
+                        // Location Section
+                        section
+                            h3 Location
+                            label(for="locationTitle") Location Title:
+                            input(type="text", name="locationTitle", id="locationTitle", value="DummyLocationTitle" , required)
+
+                            label(for="locationDescription") Location Description:
+                            input(type="text", name="locationDescription", id="locationDescription", value="DummyLocationDescription" , required)
 
 
-        //form(hx-post="/addLocation" hx-trigger="submit" hx-target="#sidebar" hx-swap="outerHTML")
-        //    // Location Section
-        //    section
-        //        h3 Location
-        //        label(for="locationTitle") Location Title:
-        //        input(type="text", name="locationTitle", id="locationTitle", value="DummyLocationTitle" , required)
-        //
-        //        label(for="locationDescription") Location Description:
-        //        input(type="text", name="locationDescription", id="locationDescription", value="DummyLocationDescription" , required)
-        //
-        //
-        //    input(type="checkbox" name="currentCropChoiceBtn" id="currentCropChoiceBtn")
-        //    label(for="currentCropChoiceBtn") Add Current Crop
-        //    br
-        //
-        //    // Crop Section
-        //    section#currentCrop(style="display: none;")
-        //
-        //        h3 Current Crop
-        //        label(for="cropName") Crop Name:
-        //        input(type="text", name="cropName", id="cropName")
-        //
-        //        label(for="cropDescription") Crop Description:
-        //        input(type="text", name="cropDescription", id="cropDescription")
-        //
-        //        label(for="plantedDate") Planted Date:
-        //        input(type="date", name="plantedDate", id="plantedDate")
-        //
-        //        label(for="plantedAmount") Planted Amount:
-        //        input(type="number", name="plantedAmount", id="plantedAmount")
-        //
-        //        label(for="expectedHarvestDate") Expected Harvest Date:
-        //        input(type="date", name="expectedHarvestDate", id="expectedHarvestDate")
-        //
-        //    input(type="checkbox" name="destinationChoiceBtn" id="destinationChoiceBtn")
-        //    label(for="destinationChoiceBtn") Add Destination
-        //    br
-        //
-        //    // Destination Section
-        //    section#destinationSection(style="display: none;")
-        //        h3 Destination
-        //        label(for="destination") Destination:
-        //        select(name="destination", id="destination")
-        //            option(value="option1") Option 1
-        //            option(value="option2") Option 2
-        //            // Add more options as needed
-        //
-        //
-        //    input(type="checkbox" name="historyChoiceBtn" id="historyChoiceBtn")
-        //    label(for="historyChoiceBtn") Add History
-        //    br
-        //    // History Section
-        //    section#historySection(style="display: none;")
-        //        h3 History Section
-        //
-        //    //group name
-        //    section
-        //        h3 Group Name
-        //        label(for="groupName") Group Name:
-        //        input(type="text", name="groupName", id="groupName")
-        //
-        //    // Submit Button
-        //    button(type="submit") Submit
-        //
+                        input(type="checkbox" name="currentCropChoiceBtn" id="currentCropChoiceBtn")
+                        label(for="currentCropChoiceBtn") Add Current Crop
+                        br
+
+                        // Crop Section
+                        section#currentCrop(style="display: none;")
+
+                            h3 Current Crop
+                            label(for="cropName") Crop Name:
+                            input(type="text", name="cropName", id="cropName")
+
+                            label(for="cropDescription") Crop Description:
+                            input(type="text", name="cropDescription", id="cropDescription")
+
+                            label(for="plantedDate") Planted Date:
+                            input(type="date", name="plantedDate", id="plantedDate")
+
+                            label(for="plantedAmount") Planted Amount:
+                            input(type="number", name="plantedAmount", id="plantedAmount")
+
+                            label(for="expectedHarvestDate") Expected Harvest Date:
+                            input(type="date", name="expectedHarvestDate", id="expectedHarvestDate")
+
+                        input(type="checkbox" name="destinationChoiceBtn" id="destinationChoiceBtn")
+                        label(for="destinationChoiceBtn") Add Destination
+                        br
+
+                        // Destination Section
+                        section#destinationSection(style="display: none;")
+                            h3 Destination
+                            label(for="destination") Destination:
+                            select(name="destination", id="destination")
+                                option(value="option1") Option 1
+                                option(value="option2") Option 2
+                                // Add more options as needed
 
 
-        //script.
-            //
-            //document.addEventListener('htmx:response', function (event) {
-            //    let responseData = event.detail.response;
-            //    let status = responseData.status;
-            //    let message = responseData.message;
-            //
-            //    console.log(status.toUpperCase() + ': ' + message);
-            //});
-            //
-            //
-            //function setupRadioBtnListener(radioBtn, section) {
-            //    radioBtn.addEventListener("change", () => {
-            //        console.log(`clicked ${radioBtn}`);
-            //        if (radioBtn.checked) {
-            //            section.style.display = "block";
-            //        } else {
-            //            section.style.display = "none";
-            //        }
-            //});
-            //}
-            //
-            //const currentCropRadioBtn = document.getElementById("currentCropChoiceBtn");
-            //const currentCropSection = document.getElementById("currentCrop");
-            //setupRadioBtnListener(currentCropRadioBtn, currentCropSection);
-            //
-            //const destinationRadioBtn = document.getElementById("destinationChoiceBtn");
-            //const destinationSection = document.getElementById("destinationSection");
-            //setupRadioBtnListener(destinationRadioBtn, destinationSection);
-            //
-            //const historyRadioBtn = document.getElementById("historyChoiceBtn");
-            //const historySection = document.getElementById("historySection");
-            //setupRadioBtnListener(historyRadioBtn, historySection);
-            //
-            //function expandGroup(groupName) {
-            //    fetch(`/expandGroup/${groupName}`).then(() => {
-            //        window.location.href = `/expandGroup/${groupName}`;
-            //    });
-            //}
+                        input(type="checkbox" name="historyChoiceBtn" id="historyChoiceBtn")
+                        label(for="historyChoiceBtn") Add History
+                        br
+                        // History Section
+                        section#historySection(style="display: none;")
+                            h3 History Section
 
+                        //group name
+                        section
+                            h3 Group Name
+                            label(for="groupName") Group Name:
+                            input(type="text", name="groupName", id="groupName")
+
+                        // Submit Button
+                        //button(type="submit") Submit
+
+
+                div.map map
+
+
+            .loc-btn-container
+                .add-location-container#add-loc-btn
+                .cancel-add-location-container.hide#cancel-add-loc-btn

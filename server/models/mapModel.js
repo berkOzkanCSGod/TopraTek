@@ -77,6 +77,7 @@ async function addLocation(userId, {locationInfo}){
 }
 
 async function removeLocation (userId, {locationInfo}) {
+    console.log({locationInfo})
     const collection = await db.collection('Users');
     const user = await getUser(userId);
     const groups = user.groups;

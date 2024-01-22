@@ -1,6 +1,9 @@
 :root {
     --nav-height: 36px;
     --nav-text-padding: 50px;
+    --nav-box-padding: 5px;
+    --total-nav-height: calc(var(--nav-height) - 2*var(--nav-box-padding));
+
 }
 
 nav {
@@ -12,10 +15,11 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 5px;
+    padding: var(--nav-box-padding);
 
     position: relative;
-
+    /*position: sticky;*/
+    top: 0;
     border-bottom: 2px solid var(--secondary-color);
 
     font-weight: bold;
