@@ -9,12 +9,19 @@
 
 }
 
+body {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+}
+
 .add-loc-display {
     border: 1px solid blue;
     display: none; /* block is opposite */
 }
 
-.map {
+#map {
     /*border: 1px solid red;*/
     height: var(--sidebar-height);
 }

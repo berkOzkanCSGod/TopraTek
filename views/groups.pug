@@ -1,29 +1,23 @@
-// views/groupList.pug
 doctype html
 html
     head
         title Group List
+        link(rel='stylesheet', href='./CSS/main.css')
+        link(rel='stylesheet', href='./CSS/groups.css')
     body
-        h1 Group List
 
-        each groupKey, index in groupKeys || []
+        include navbar
 
-            .group-card(name=`${groupKey}`)
-                h2 #{groupKey}
-                p Location Count: #{groupValues[index].length}
-                button(type="button"
-                    id = `${groupKey}`
-                    onclick=`expandGroup(\'${groupKey}\')`) EXP
+        h1#page-title Group List
+        .cards
+            each groupKey, index in groupKeys || []
+                .group-card(name=`${groupKey}`)
+                    h2 #{groupKey}
+                    p Location Count: #{groupValues[index].length}
+                    .exp-btn-container
+                        button(type="button", id=`${groupKey}`, onclick=`expandGroup('${groupKey}', 'none')`).sidebar-action-button
+                            img.icon(src="/icons/expand-icon.svg")
 
-        // Add styling if needed
-        style.
-            .group-card {
-                border: 1px solid #ddd;
-                padding: 10px;
-                margin: 10px;
-                width: 200px;
-                text-align: center;
-            }
 
         script.
             function expandGroup(groupName) {

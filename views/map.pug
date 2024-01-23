@@ -6,9 +6,17 @@ html
         title TopraTek.com
         link(rel='stylesheet', href='./CSS/main.css')
         link(rel='stylesheet', href='./CSS/map.css')
-        script(type="text/javascript" src="./JS/map.js")
-
+        script(type='module' src="./JS/map.js")
         script(src='https://unpkg.com/htmx.org@1.9.10' integrity='sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC' crossorigin='anonymous')
+
+        //Mapbox
+        link(href='https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.css' rel='stylesheet')
+        script(src='https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.js')
+
+        // Mapbox Draw
+        script(src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.4.3/mapbox-gl-draw.js')
+        link(rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.4.3/mapbox-gl-draw.css' type='text/css')
+        script(type='module' src='./JS/mapbox.js')
 
     body
 
@@ -20,7 +28,6 @@ html
             .map-container
                 div.add-loc-display.hide#add-loc-display
                     form#add-loc-form
-                        //hx-post="/addLocation" hx-trigger="submit" hx-target="#sidebar" hx-swap="outerHTML"
                         // Location Section
                         section
                             h3 Location
@@ -85,8 +92,7 @@ html
                         //button(type="submit") Submit
 
 
-                div.map map
-
+                div#map
 
             .loc-btn-container
                 .add-location-container#add-loc-btn

@@ -1,4 +1,4 @@
-import express, {response} from 'express';
+import express from 'express';
 import mapController from '../controllers/mapController.js';
 import cookieAuthenticator from "../middleware/cookieAuthenticator.js";
 
@@ -25,10 +25,15 @@ router.get('/groups', cookieAuthenticator.authenticateToken, async (req, res) =>
     const groups = await mapController.getAllGroups(req, res);
     return res.render('groups', { groupKeys: Object.keys(groups), groupValues: Object.values(groups) });
 })
+router.post('/update', cookieAuthenticator.authenticateToken, async (req, res) => {
+    const response = await mapController.updateLocation(req, res);
+    res.redirect(req.get('Referer'))
+})
 
 router.get('/', cookieAuthenticator.authenticateToken, mapController.loadMap);
 router.get('/settings', cookieAuthenticator.authenticateToken, async (req, res) => {
     return true;
 });
+
 
 export default router;

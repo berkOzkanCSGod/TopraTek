@@ -77,7 +77,6 @@ async function addLocation(userId, {locationInfo}){
 }
 
 async function removeLocation (userId, {locationInfo}) {
-    console.log({locationInfo})
     const collection = await db.collection('Users');
     const user = await getUser(userId);
     const groups = user.groups;
@@ -112,11 +111,42 @@ async function expandGroup (userId, groupName) {
     return groups[groupName] || [];
 }
 
+async function updateLocation(userId, locationInfo) {
+    const collection = await db.collection('Users');
+    const user = await getUser(userId);
+    const locationId = locationInfo.id;
+    const groups = user.groups;
+    const group = groups[locationInfo.groupName];
+
+    console.log(group);
+
+    for (const location in group) {
+        let l = group[location];
+        if (group[location].id.toString() === locationInfo.id){
+            for (const prop in locationInfo) {
+                if (l.hasOwnProperty(prop)) {
+                    l[prop] = locationInfo[prop];
+                }
+            }
+        }
+    }
+
+    const filter = { _id: new ObjectId(userId) };
+    const update = { $set: { groups: groups } };
+
+    const updateResult = await collection.updateOne(filter, update);
+    console.log({updateResult});
+
+    return {success: true, message: `Successfully updated ${locationInfo.groupName}.`};
+
+}
+
 
 export default {
     addLocation,
     removeLocation,
     expandGroup,
     getUser,
-    getAllGroups
+    getAllGroups,
+    updateLocation
 };

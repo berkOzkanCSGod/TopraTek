@@ -31,7 +31,6 @@ class User {
     password;
     settings; //json file
     createdAt;
-    locations; //list of ids
     groups; //json of lists
 }
 

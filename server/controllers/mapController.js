@@ -84,6 +84,14 @@ const mapController = {
             return await mapModel.getAllGroups(userToken.id);
         }
         return false;
+    },
+    updateLocation: async (req, res) => {
+        const userToken = getUserId(req);
+        const locationInfo = req.body;
+        if (userToken) {
+            return await mapModel.updateLocation(userToken.id, locationInfo);
+        }
+        return {success: false, message: `Could not update ${locationInfo.groupName}.`};
     }
 };
 

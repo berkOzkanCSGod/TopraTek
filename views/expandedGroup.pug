@@ -2,52 +2,56 @@ doctype html
 html
     head
         title Group Information
-        link(rel='stylesheet', type="text/css", href='/CSS/main.css')
-        link(rel='stylesheet', type="text/css", href='/CSS/group.css')
+        link(rel='stylesheet', href='/CSS/main.css')
+        link(rel='stylesheet', href='/CSS/group.css')
     body
 
-        //include navbar
+        include navbar
 
         h1#page-title Group Information
 
         each group in groups || []
-            .group-container(id=group.locationTitle)
-                // Section 1: General Information
-                .section-1
-                    .location-title
-                        p #{group.locationTitle}
-                    .location-id
-                        p #{group.id}
-                    .group-name
-                        label(for="groupName") Group Name:
-                        input(type="text", id="groupName", name="groupName", value=group.groupName)
-                    .group-description
-                        label(for="groupDescription") Group Description:
-                        textarea(id="groupDescription", name="groupDescription", rows="4") #{group.groupDescription}
+            -console.log(group.locationDescription)
+            form(action="/update" method="post")
+                .group-container(id=group.locationTitle)
+                    // Section 1: General Information
+                    .section-1
+                        .location-title
+                            p #{group.locationTitle}
+                        .location-id
+                            p #{group.id}
+                            input(type="hidden", name="id", value=group.id)
+                        .group-name
+                            label(for="groupName") Group Name:
+                            input(type="text", id="groupName", name="groupName", value=group.groupName)
+                        .group-description
+                            label(for="groupDescription") Group Description:
+                            textarea(id="groupDescription", name="locationDescription", rows="4") #{group.locationDescription}
 
-                // Section 2: Current Crops
-                .section-2
-                    .label-input-table
-                        .label-input-row
-                            .label Name
-                            .label Destination
-                            .label Planted Date
-                            .label Planted Amount
-                        .label-input-row
-                            .input-cell
-                                input(type="text" placeholder="Enter Crop Name" value=group.cropName)
-                            .input-cell
-                                input(type="text" placeholder="Enter Destination" value=group.destination)
-                            .input-cell
-                                input(type="date" placeholder="Enter Planted Date" value=group.plantedDate)
-                            .input-cell
-                                input(type="date" placeholder="Enter Expected Harvest Date" value=group.expectedHarvestDate)
-                        .label-input-row
-                            .label Expected Harvest Date
-                        .label-input-row
-                            .input-cell
-                                input(type="number" placeholder="Enter Planted Amount" value=group.plantedAmount)
-
+                    // Section 2: Current Crops
+                    .section-2
+                        .label-input-table
+                            .label-input-row
+                                .label Name
+                                .label Destination
+                                .label Planted Date
+                                .label Planted Amount
+                            .label-input-row
+                                .input-cell
+                                    input(type="text" name="cropName" placeholder="Enter Crop Name" value=group.cropName)
+                                .input-cell
+                                    input(type="text" name="cropDescription" placeholder="Enter Destination" value=group.destination)
+                                .input-cell
+                                    input(type="date" name="plantedDate" placeholder="Enter Planted Date" value=group.plantedDate)
+                                .input-cell
+                                    input(type="date" name="expectedHarvestDate" placeholder="Enter Expected Harvest Date" value=group.expectedHarvestDate)
+                            .label-input-row
+                                .label Expected Harvest Date
+                            .label-input-row
+                                .input-cell
+                                    input(type="number" name="plantedAmount" placeholder="Enter Planted Amount" value=group.plantedAmount)
+                    .form-submit-btn
+                        button(type="submit") Update
 
 
 

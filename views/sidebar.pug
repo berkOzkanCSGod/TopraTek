@@ -2,7 +2,7 @@ mixin sidebarLocationFactory(group, groupName)
     ul.sidebar-group
         li.sidebar-group-title= groupName
             button(type="button", id=`${groupName}`, onclick=`expandGroup('${groupName}', 'none')`).sidebar-action-button
-                img.icon(src="./icons/expand-group-icon.svg")
+                img.icon(src="./icons/expand-icon.svg")
         each location in group || {}
             li.sidebar-location(locationId=`${location.id}`, title=`${location.locationTitle}`, groupName=`${groupName}`)
                 span.sidebar-location-title= location.locationTitle
@@ -10,7 +10,7 @@ mixin sidebarLocationFactory(group, groupName)
                     button.sidebar-action-button(type="button" name="goto-btn")
                         img.icon(src="./icons/goto-icon.png" name="goto-btn")
                     button.sidebar-action-button(type="button", data-group-name=`${groupName}`, data-loc-id=`${location.locationTitle}` name="edit-btn")
-                        img.icon(src="./icons/expand-icon.svg" data-group-name=`${groupName}`, data-loc-id=`${location.locationTitle}` name="edit-btn")
+                        img.icon(src="./icons/edit-icon.png" data-group-name=`${groupName}`, data-loc-id=`${location.locationTitle}` name="edit-btn")
                     button.sidebar-action-button(type="button", name="del-btn", data-location-id=`${location.id}` data-location-title=`${location.locationTitle}` data-location-groupName=`${groupName}`)
                         img.icon(src="./icons/del-icon.png" name="del-btn" data-location-id=`${location.id}` data-location-title=`${location.locationTitle}` data-location-groupName=`${groupName}`)
 

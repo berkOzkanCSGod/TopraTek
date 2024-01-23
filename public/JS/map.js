@@ -1,3 +1,7 @@
+import mapbox from "./mapbox.js"
+
+
+
 document.addEventListener('DOMContentLoaded', function () {
     const addLocationContainer = document.getElementById("add-loc-btn");
     const addLocDisplay = document.getElementById("add-loc-display");
@@ -7,8 +11,12 @@ document.addEventListener('DOMContentLoaded', function () {
     addLocationContainer.addEventListener('click', async function () {
         if (addLocationContainer.classList.contains('clicked')) {
             await addLocation(addLocForm);
+            mapbox.draw.changeMode('simple_select');
+            mapbox.map.removeControl(mapbox.draw);
             addLocDisplay.classList.toggle('hide');
         } else {
+            mapbox.map.addControl(mapbox.draw);
+            mapbox.draw.changeMode('draw_polygon');
             addLocDisplay.classList.toggle('hide');
         }
         cancelBtn.classList.toggle('hide');
