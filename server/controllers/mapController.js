@@ -17,7 +17,7 @@ function sidebarLocationFactory(groups) {
         const groupTitle = Object.keys(groups)[i] === 'no-group' ? '' : Object.keys(groups)[i];
         html += `<ul class="sidebar-group">`;
         html += `<li class="sidebar-group-title"> ${groupName}
-                    <button class="sidebar-action-button" type="button" id=\'${groupName}\' onclick=\"expandGroup('${groupName}')\">
+                    <button class="sidebar-action-button" type="button" id=\'${groupName}\' onclick=expandGroup(\'${groupName}\', "none")>
                         <img class="icon" src="./icons/expand-group-icon.svg">
                     </button>
                 </li>`;
@@ -29,14 +29,14 @@ function sidebarLocationFactory(groups) {
                   <li class="sidebar-location" locationId="${g[location].id}" title="${g[location].locationTitle}" groupName="${g[location].groupName}">
                       <span class="sidebar-location-title">${g[location].locationTitle}</span>
                       <div class="location-buttons">
-                            <button class="sidebar-action-button" type="button">
-                                <img class="icon" src="./icons/goto-icon.png">
+                            <button class="sidebar-action-button" type="button" name="goto-btn">
+                                <img class="icon" src="./icons/goto-icon.png" name="goto-btn">
                             </button>
-                            <button class="sidebar-action-button" type="button">
-                                <img class="icon" src="./icons/expand-icon.svg">
+                            <button class="sidebar-action-button" type="button" name="edit-btn" data-group-name=\"${groupName}\" data-loc-id=\"${g[location].locationTitle}\">
+                                <img class="icon" src="./icons/expand-icon.svg" name="edit-btn" data-group-name=\"${groupName}\" data-loc-id=\"${g[location].locationTitle}\">
                             </button>
-                            <button class=\"sidebar-action-button\" type=\"button\" data-location-id=\"${g[location].id}\" data-location-title=\"${g[location].locationTitle}\" data-location-groupName=\"${g[location].groupName}\">
-                                <img class="icon" src="./icons/del-icon.png" data-location-id=\"${g[location].id}\" data-location-title=\"${g[location].locationTitle}\" data-location-groupName=\"${g[location].groupName}\">
+                            <button class=\"sidebar-action-button\" type=\"button\" name="del-btn" data-location-id=\"${g[location].id}\" data-location-title=\"${g[location].locationTitle}\" data-location-groupName=\"${g[location].groupName}\">
+                                <img class="icon" src="./icons/del-icon.png" name="del-btn" data-location-id=\"${g[location].id}\" data-location-title=\"${g[location].locationTitle}\" data-location-groupName=\"${g[location].groupName}\">
                             </button>
                   </li>`;
 

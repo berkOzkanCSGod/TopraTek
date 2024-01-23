@@ -119,6 +119,15 @@
 
 /*/*/
 
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    min-width: var(--min-screen-width);
+    height: 100vh;
+
+    overflow: hidden;
+}
 
 .cancel-add-location-container {
     position: fixed;

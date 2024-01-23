@@ -73,38 +73,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const historySection = document.getElementById("historySection");
     setupRadioBtnListener(historyRadioBtn, historySection);
 
-    function expandGroup(groupName) {
-        fetch(`/expandGroup/${groupName}`).then(() => {
-            window.location.href = `/expandGroup/${groupName}`;
-        });
-    }
-
-
-    document.body.addEventListener('click', async function (event) {
-
-        const button = event.target;
-
-        if (event.target.classList.contains('sidebar-action-button') || event.target.classList.contains('icon')) {
-            const id = button.getAttribute('data-location-id');
-            const title = button.getAttribute('data-location-title');
-            const groupName = button.getAttribute('data-location-groupName');
-            console.log({id, title, groupName})
-            await removeLocation(id, title, groupName);
-        }
-    });
-
-    // const buttons = document.querySelectorAll('.sidebar-action-button');
-
-    // buttons.forEach(function (button) {
-    //     button.addEventListener('click', async function () {
-    //         const id = button.getAttribute('data-location-id');
-    //         const title = button.getAttribute('data-location-title');
-    //         const groupName = button.getAttribute('data-location-groupName');
-    //
-    //         await removeLocation(id, title, groupName);
-    //     });
-    // });
-
 
     async function removeLocation(id, title, groupName) {
 
@@ -124,6 +92,45 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         sidebar.outerHTML = await response.text();
     }
+
+
+
+    document.body.addEventListener('click', async function (event) {
+
+        const button = event.target;
+
+        const isDelBtn = (button.name === 'del-btn') && (button.classList.contains('sidebar-action-button') || button.classList.contains('icon'));
+        const isEditBtn =  (button.name === 'edit-btn') && (button.classList.contains('sidebar-action-button') || button.classList.contains('icon'));
+
+        if (isDelBtn) {
+            const id = button.getAttribute('data-location-id');
+            const title = button.getAttribute('data-location-title');
+            const groupName = button.getAttribute('data-location-groupName');
+            await removeLocation(id, title, groupName);
+        } else if (isEditBtn) {
+            const id = button.getAttribute('data-loc-id');
+            const groupName = button.getAttribute('data-group-name');
+            await expandGroup(groupName, id)
+        }
+    });
+
+
+    function expandGroup(groupName, id) {
+        fetch(`/expandGroup/${groupName}`).then(() => {
+            window.location.href = `/expandGroup/${groupName}?id=${id}`;
+        });
+    }
+
+
+
+
+
+
+
+
+
+
+
 
 
 

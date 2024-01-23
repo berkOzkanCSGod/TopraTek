@@ -1,28 +1,64 @@
-// views/groups.pug
 doctype html
 html
     head
         title Group Information
+        link(rel='stylesheet', type="text/css", href='/CSS/main.css')
+        link(rel='stylesheet', type="text/css", href='/CSS/group.css')
     body
-        h1 Group Information
+
+        //include navbar
+
+        h1#page-title Group Information
 
         each group in groups || []
-            .group-container
-                p Group ID: #{group.id}
-                p Location Title: #{group.locationTitle}
-                p Location Description: #{group.locationDescription}
-                p Crop Name: #{group.cropName}
-                p Crop Description: #{group.cropDescription}
-                p Planted Date: #{group.plantedDate}
-                p Planted Amount: #{group.plantedAmount}
-                p Expected Harvest Date: #{group.expectedHarvestDate}
-                p Destination: #{group.destination}
-                p Group Name: #{group.groupName}
+            .group-container(id=group.locationTitle)
+                // Section 1: General Information
+                .section-1
+                    .location-title
+                        p #{group.locationTitle}
+                    .location-id
+                        p #{group.id}
+                    .group-name
+                        label(for="groupName") Group Name:
+                        input(type="text", id="groupName", name="groupName", value=group.groupName)
+                    .group-description
+                        label(for="groupDescription") Group Description:
+                        textarea(id="groupDescription", name="groupDescription", rows="4") #{group.groupDescription}
 
-        // Add styling if needed
-        style.
-            .group-container {
-                border: 1px solid #ddd;
-                padding: 10px;
-                margin-bottom: 10px;
-            }
+                // Section 2: Current Crops
+                .section-2
+                    .label-input-table
+                        .label-input-row
+                            .label Name
+                            .label Destination
+                            .label Planted Date
+                            .label Planted Amount
+                        .label-input-row
+                            .input-cell
+                                input(type="text" placeholder="Enter Crop Name" value=group.cropName)
+                            .input-cell
+                                input(type="text" placeholder="Enter Destination" value=group.destination)
+                            .input-cell
+                                input(type="date" placeholder="Enter Planted Date" value=group.plantedDate)
+                            .input-cell
+                                input(type="date" placeholder="Enter Expected Harvest Date" value=group.expectedHarvestDate)
+                        .label-input-row
+                            .label Expected Harvest Date
+                        .label-input-row
+                            .input-cell
+                                input(type="number" placeholder="Enter Planted Amount" value=group.plantedAmount)
+
+
+
+
+        script.
+            document.addEventListener('DOMContentLoaded', () => {
+                const urlParams = new URLSearchParams(window.location.search);
+                const newId = urlParams.get('id');
+
+                if (newId !== 'none' && document.getElementById(newId)) {
+                    document.getElementById(newId).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });

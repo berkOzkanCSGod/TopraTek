@@ -1,0 +1,129 @@
+body {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+}
+
+.group-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: calc(100vw - 10%);
+    background-color: var(--secondary-color);
+    padding: 20px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+}
+
+.section-1 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.location-title,
+.location-id,
+.location-description,
+.group-name,
+.group-description {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.location-id {
+    text-align: right;
+    opacity: 0.5;
+}
+
+.location-title,
+.location-id,
+.location-description {
+    flex-basis: calc(50% - 10px);
+}
+
+.group-name,
+.group-description {
+    flex-basis: 100%;
+}
+
+textarea {
+    width: calc(100% - 16px);
+    margin-top: 8px;
+    resize: none;
+    background-color: var(--fourth-color);
+
+}
+
+.section-2 {
+    margin-top: 20px;
+}
+
+.label-input-table {
+    display: table;
+    width: 100%;
+}
+
+.label-input-row {
+    display: table-row;
+    text-align: left;
+}
+
+.label-input-row .label {
+    text-align: left;
+}
+
+
+.label,
+.input-cell {
+    display: table-cell;
+    padding-bottom: 10px;
+}
+
+.label,
+.input-cell input {
+    max-width: 70%;
+}
+
+.label {
+    text-align: right;
+    color: var(--text-color);
+}
+
+.input-cell input,
+.input-cell textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid var(--secondary-color);
+    border-radius: var(--border-radius);
+    background-color: var(--fourth-color);
+    color: var(--primary-color);
+    resize: none;
+}
+
+.group-name input {
+    margin-left: 10px;
+    max-width: 100px;
+    padding: 8px;
+    border: 1px solid var(--secondary-color);
+    border-radius: var(--border-radius);
+    background-color: var(--fourth-color);
+    color: var(--primary-color);
+    resize: none;
+}
+
+.group-description textarea {
+    max-width: 93.5%;
+    padding: 8px;
+    border: 1px solid var(--secondary-color);
+    border-radius: var(--border-radius);
+    background-color: var(--fourth-color);
+    color: var(--primary-color);
+    resize: none;
+}
+
+
+#page-title {
+    padding: 30px;
+}

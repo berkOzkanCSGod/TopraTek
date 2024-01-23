@@ -17,9 +17,8 @@ router.post('/removeLocation', cookieAuthenticator.authenticateToken, async (req
 });
 
 router.get('/expandGroup/:groupName', cookieAuthenticator.authenticateToken, async (req, res) => {
-    const groups = await mapController.expandGroup(req, res);
-    console.log({groups});
-    return res.render('expandedGroup', { groups: groups });
+    const group = await mapController.expandGroup(req, res);
+    return res.render('expandedGroup', { groups: group });
 });
 
 router.get('/groups', cookieAuthenticator.authenticateToken, async (req, res) => {
