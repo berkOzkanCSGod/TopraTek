@@ -94,6 +94,12 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    function removeShape(title) {
+        mapbox.map.removeLayer(title + '_outline');
+        mapbox.map.removeLayer(title);
+        mapbox.map.removeSource(title);
+    }
+
     async function addLocation(form, geodata) {
         if (isValidShape(geodata)) {
             const locationTitle = document.getElementById('locationTitle').value;
@@ -123,30 +129,6 @@ document.addEventListener('DOMContentLoaded', function () {
         } else {
             console.log("is not valid shape");
         }
-        // console.log(geodata)
-        // try {
-        //     const formD = new FormData(form);
-        //     const payload = {};
-        //     const sidebar = document.getElementById("sidebar");
-        //     for (let pair of formD.entries()) {
-        //         payload[pair[0]] = pair[1];
-        //     }
-        //
-        //     const response = await fetch('/addLocation', {
-        //         method: 'POST',
-        //         headers: {
-        //             'Content-Type': 'application/json'
-        //         },
-        //         body: JSON.stringify(payload)
-        //     });
-        //
-        //     if (!response.ok) {
-        //         throw new Error('Network response was not ok');
-        //     }
-        //     sidebar.outerHTML = await response.text();
-        // } catch (error) {
-        //     console.error('Error:', error);
-        // }
     }
 
 
@@ -179,7 +161,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const sidebar = document.getElementById("sidebar");
         const obj = {locationId: id, locationTitle: title, groupName: groupName}
-
+        removeShape(title);
         const response = await fetch('/removeLocation', {
             method: 'POST',
             headers: {
