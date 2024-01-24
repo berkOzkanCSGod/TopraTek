@@ -1,6 +1,5 @@
 import mapModel from "../models/mapModel.js";
 
-
 function getUserId(req) {
     const tokenValue = req.cookies.token;
     const tokenParts = tokenValue.split('.');
@@ -92,6 +91,11 @@ const mapController = {
             return await mapModel.updateLocation(userToken.id, locationInfo);
         }
         return {success: false, message: `Could not update ${locationInfo.groupName}.`};
+    },
+    getGeoJson: async (req, res) => {
+        const userToken = getUserId(req);
+        const user = await mapModel.getUser(userToken.id);
+        return res.send(user.groups);
     }
 };
 

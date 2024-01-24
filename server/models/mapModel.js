@@ -118,8 +118,6 @@ async function updateLocation(userId, locationInfo) {
     const groups = user.groups;
     const group = groups[locationInfo.groupName];
 
-    console.log(group);
-
     for (const location in group) {
         let l = group[location];
         if (group[location].id.toString() === locationInfo.id){

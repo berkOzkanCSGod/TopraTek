@@ -8,15 +8,18 @@ document.addEventListener('DOMContentLoaded', function () {
     const addLocForm = document.getElementById("add-loc-form");
     const cancelBtn = document.getElementById("cancel-add-loc-btn");
 
+
+
     addLocationContainer.addEventListener('click', async function () {
+
         if (addLocationContainer.classList.contains('clicked')) {
-            await addLocation(addLocForm);
-            mapbox.draw.changeMode('simple_select');
-            mapbox.map.removeControl(mapbox.draw);
+            const geodata = mapbox.draw.getAll();
+            await addLocation(addLocForm, geodata);
+
+            toggleDrawControl(mapbox.map, mapbox.draw);
             addLocDisplay.classList.toggle('hide');
         } else {
-            mapbox.map.addControl(mapbox.draw);
-            mapbox.draw.changeMode('draw_polygon');
+            toggleDrawControl(mapbox.map, mapbox.draw);
             addLocDisplay.classList.toggle('hide');
         }
         cancelBtn.classList.toggle('hide');
@@ -24,36 +27,126 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     cancelBtn.addEventListener('click', function () {
+        toggleDrawControl(mapbox.map, mapbox.draw);
         addLocDisplay.classList.toggle('hide');
         cancelBtn.classList.toggle('hide');
         addLocationContainer.classList.toggle('clicked');
     })
 
-
-    async function addLocation(form) {
-        try {
-            const formD = new FormData(form);
-            const payload = {};
-            const sidebar = document.getElementById("sidebar");
-            for (let pair of formD.entries()) {
-                payload[pair[0]] = pair[1];
-            }
-
-            const response = await fetch('/addLocation', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(payload)
-            });
-
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            sidebar.outerHTML = await response.text();
-        } catch (error) {
-            console.error('Error:', error);
+    function toggleDrawControl(map, draw) {
+        if (map.hasControl(draw)) {
+            map.removeControl(draw);
+        } else {
+            map.addControl(draw);
         }
+    }
+
+    function isValidShape(geoFeature) {
+        return geoFeature.features[0].geometry.coordinates[0];
+    }
+
+    async function loadAreas() {
+        const response = await fetch('/getGeoJson');
+        if (response.ok) {
+            const responseData = await response.json();
+
+            for (const groupKey in responseData) {
+                const group = responseData[groupKey];
+                for (const location in group) {
+                    createShape(group[location].locationTitle, group[location].source)
+                }
+            }
+        } else {
+            console.error("Error fetching data. Status:", response.status);
+        }
+    }
+
+
+   mapbox.map.on('load', () => {
+       loadAreas().then(r => console.log());
+   })
+
+    function createShape(title, feature) {
+        mapbox.map.addSource(title, {
+            'type': 'geojson',
+            'data': feature
+        })
+
+        mapbox.map.addLayer({
+            'id': title,
+            'type': 'fill',
+            'source': title,
+            'layout': {},
+            'paint': {
+                'fill-color': '#0080ff',
+                'fill-opacity': 0.3
+            }
+        });
+        mapbox.map.addLayer({
+            'id': title + '_outline',
+            'type': 'line',
+            'source': title,
+            'layout': {},
+            'paint': {
+                'line-color': '#000',
+                'line-width': 3
+            }
+        });
+    }
+
+    async function addLocation(form, geodata) {
+        if (isValidShape(geodata)) {
+            const locationTitle = document.getElementById('locationTitle').value;
+            createShape(locationTitle, geodata);
+
+
+            const formD = new FormData(form);
+                const payload = {source: geodata};
+                const sidebar = document.getElementById("sidebar");
+                for (let pair of formD.entries()) {
+                    payload[pair[0]] = pair[1];
+                }
+
+                const response = await fetch('/addLocation', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                });
+
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                sidebar.outerHTML = await response.text();
+
+        } else {
+            console.log("is not valid shape");
+        }
+        // console.log(geodata)
+        // try {
+        //     const formD = new FormData(form);
+        //     const payload = {};
+        //     const sidebar = document.getElementById("sidebar");
+        //     for (let pair of formD.entries()) {
+        //         payload[pair[0]] = pair[1];
+        //     }
+        //
+        //     const response = await fetch('/addLocation', {
+        //         method: 'POST',
+        //         headers: {
+        //             'Content-Type': 'application/json'
+        //         },
+        //         body: JSON.stringify(payload)
+        //     });
+        //
+        //     if (!response.ok) {
+        //         throw new Error('Network response was not ok');
+        //     }
+        //     sidebar.outerHTML = await response.text();
+        // } catch (error) {
+        //     console.error('Error:', error);
+        // }
     }
 
 
@@ -123,8 +216,8 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
 
-    function expandGroup(groupName, id) {
-        fetch(`/expandGroup/${groupName}`).then(() => {
+    async function expandGroup(groupName, id) {
+        await fetch(`/expandGroup/${groupName}`).then(() => {
             window.location.href = `/expandGroup/${groupName}?id=${id}`;
         });
     }

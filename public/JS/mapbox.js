@@ -20,8 +20,6 @@ const draw = new MapboxDraw({
 
 
 
-
-
 export default {
     map,
     draw

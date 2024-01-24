@@ -35,5 +35,8 @@ router.get('/settings', cookieAuthenticator.authenticateToken, async (req, res) 
     return true;
 });
 
+router.get('/getGeoJson',  cookieAuthenticator.authenticateToken, async (req, res) => {
+    return await mapController.getGeoJson(req, res);
+})
 
 export default router;
