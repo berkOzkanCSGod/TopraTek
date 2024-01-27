@@ -61,7 +61,7 @@ I used Unified Modeling Language (UML) to plan and design this project. This inv
 I deliberately chose to use only basic JavaScript and Node JS for this project. Instead of relying on frameworks or libraries, I wanted to understand how JavaScript and frontend-backend interactions work from the ground up. This hands-on approach allowed me to dive into core concepts, learning their details and best practices thoroughly. By doing so, I'm better equipped to handle various challenges in web development and beyond.
 
 ** Personal anecdote **
-When developing this project I ran into a performance problem. I wanted to update features, such as the sidebar and map live when a user added a location, however, since PUG is a serverside template each change required a complete reload of the page. Then, I discovered HTMX, which helped me make some parts dynamic without reloading the page–greatly increasing performance. However, some feature updates required a more tailored approach (or I didn't know htmx well enough), so this led me to do routing and updating manually with vanilla JS fetch and awaits on the frontend. And so, I was able to benefit from superior performance of server side rendering while keeping the site dynamic.
+When developing this project I ran into a performance problem. I wanted to update features, such as the sidebar and map live when a user added a location, however, since PUG is a serverside template each change required a complete reload of the page. Then, I discovered HTMX, which helped me make some parts dynamic without reloading the page–greatly increasing performance. However, some feature updates required a more tailored approach (or I didn't know htmx well enough), so this led me to do routing and updating manually with vanilla JS fetch and awaits on the front end. And so, I was able to benefit from the superior performance of server-side rendering while keeping the site dynamic.
 
 In summary, this project reflects my commitment to learning and mastering software development techniques. It demonstrates my ability to plan projects systematically.
 
@@ -82,10 +82,14 @@ In summary, this project reflects my commitment to learning and mastering softwa
 
 <img width="553" alt="sqncTT" src="https://github.com/berkOzkanCSGod/TopraTek/assets/82842011/aca1e99e-bee6-4880-b72b-82b46c0a6ebf">
 
-I didn't add (due to time contraints):
+I didn't add (due to time constraints):
 - Error indicators
-- Editing geometric shape on map
-- 
+- Editing geometric shapes on map
+- Weather data with OpenWeatherAPI
+- Full-screen mode
+- View settings
+- Navigation on map
+- Some details
 
 
 
