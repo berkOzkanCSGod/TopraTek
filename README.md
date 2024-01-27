@@ -1,6 +1,6 @@
 # TopraTeL: Farmer's Mapping Application
 
-[Technical Details (for employers)](#technical-details)
+[Technical Details (for employers)](#technical-details-(for-employers))
 
 *** Live demo will only be available until March 1st, 2024. berk[[dot]]ozkan[[at]]ug[[dot]]bilkent[[dot]]edu[[dot]]tr ***
 
