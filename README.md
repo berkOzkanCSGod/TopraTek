@@ -73,7 +73,9 @@ In summary, this project reflects my commitment to learning and mastering softwa
 - Express
 - MongoDB
 
-## UML
+Using MVC structure.
+
+## UML 
 ### Use Case Diagram
 
 <img width="797" alt="usecaseTT" src="https://github.com/berkOzkanCSGod/TopraTek/assets/82842011/d7f58ad4-1e58-4f66-8a9e-da07e3af23c8">
