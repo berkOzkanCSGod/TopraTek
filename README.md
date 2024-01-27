@@ -1,4 +1,4 @@
-# TopraTek: Farmer's Mapping Application
+# TopraTek: Farmer's Mapping Tool
 
 Demo video: https://youtu.be/rBc-QGZwgxE
 
@@ -37,7 +37,7 @@ Welcome to TopraTek! This project aims to provide a comprehensive mapping soluti
 - Visualize your land and all associated data on an interactive map for easy reference and analysis.
 - Gain insights into your farming operations by overlaying different layers of information.
 ### Getting Started
--   To get started with the Farmer's Mapping Application, follow these steps:
+-   To get started with TopraTek, follow these steps:
 
 1. Pull repo
 2. Navigate to TopraTek folder
