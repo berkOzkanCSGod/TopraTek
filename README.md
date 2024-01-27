@@ -1,6 +1,6 @@
 # TopraTeL: Farmer's Mapping Application
 
-[Technical Details (for employers)](#-Technical-Details-(for-employers))
+[Technical Details (for employers)](#-Technical-Details)
 
 *** Live demo will only be available until March 1st, 2024. berk[[dot]]ozkan[[at]]ug[[dot]]bilkent[[dot]]edu[[dot]]tr ***
 
@@ -52,4 +52,4 @@ npm run start
 ```
 5. Go to localhost:3000/login on your browser and use.
 
-# Technical Details (for employers)
+# Technical Details
