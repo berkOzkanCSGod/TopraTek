@@ -7,8 +7,8 @@ mixin sidebarLocationFactory(group, groupName)
             li.sidebar-location(locationId=`${location.id}`, title=`${location.locationTitle}`, groupName=`${groupName}`)
                 span.sidebar-location-title= location.locationTitle
                 .location-buttons
-                    button.sidebar-action-button(type="button" name="goto-btn")
-                        img.icon(src="./icons/goto-icon.png" name="goto-btn")
+                    button.sidebar-action-button(type="button" name="goto-btn" data-location-lng=`${location.source.features[0].geometry.coordinates[0][0][0]}` data-location-lnt=`${location.source.features[0].geometry.coordinates[0][0][1]}`)
+                        img.icon(src="./icons/goto-icon.png" name="goto-btn" data-location-lng=`${location.source.features[0].geometry.coordinates[0][0][0]}` data-location-lnt=`${location.source.features[0].geometry.coordinates[0][0][1]}`)
                     button.sidebar-action-button(type="button", data-group-name=`${groupName}`, data-loc-id=`${location.locationTitle}` name="edit-btn")
                         img.icon(src="./icons/edit-icon.png" data-group-name=`${groupName}`, data-loc-id=`${location.locationTitle}` name="edit-btn")
                     button.sidebar-action-button(type="button", name="del-btn", data-location-id=`${location.id}` data-location-title=`${location.locationTitle}` data-location-groupName=`${groupName}`)

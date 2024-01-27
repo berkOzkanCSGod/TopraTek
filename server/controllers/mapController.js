@@ -28,8 +28,8 @@ function sidebarLocationFactory(groups) {
                   <li class="sidebar-location" locationId="${g[location].id}" title="${g[location].locationTitle}" groupName="${g[location].groupName}">
                       <span class="sidebar-location-title">${g[location].locationTitle}</span>
                       <div class="location-buttons">
-                            <button class="sidebar-action-button" type="button" name="goto-btn">
-                                <img class="icon" src="./icons/goto-icon.png" name="goto-btn">
+                            <button class="sidebar-action-button" type="button" name="goto-btn" data-location-lng=\"${g[location].source.features[0].geometry.coordinates[0][0][0]}\" data-location-lnt=\"${g[location].source.features[0].geometry.coordinates[0][0][1]}\">
+                                <img class="icon" src="./icons/goto-icon.png" name="goto-btn" data-location-lng=\"${g[location].source.features[0].geometry.coordinates[0][0][0]}\" data-location-lnt=\"${g[location].source.features[0].geometry.coordinates[0][0][1]}\">
                             </button>
                             <button class="sidebar-action-button" type="button" name="edit-btn" data-group-name=\"${groupName}\" data-loc-id=\"${g[location].locationTitle}\">
                                 <img class="icon" src="./icons/expand-icon.svg" name="edit-btn" data-group-name=\"${groupName}\" data-loc-id=\"${g[location].locationTitle}\">
@@ -96,6 +96,11 @@ const mapController = {
         const userToken = getUserId(req);
         const user = await mapModel.getUser(userToken.id);
         return res.send(user.groups);
+    },
+    getLocationGeoJson: async (req, res) => {
+        const userToken = getUserId(req);
+        const location = await mapModel.getLocationById(userToken.id, req.body.locationTitle, req.body.groupName);
+        res.send(location.source);
     }
 };
 

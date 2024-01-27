@@ -9,7 +9,6 @@ router.post('/addLocation', cookieAuthenticator.authenticateToken, async (req, r
     res.setHeader('Content-Type', 'text/html');
     return res.send(response);
 })
-
 router.post('/removeLocation', cookieAuthenticator.authenticateToken, async (req, res) => {
     const response = await mapController.removeLocation(req, res);
     res.setHeader('Content-Type', 'text/html');
@@ -37,6 +36,10 @@ router.get('/settings', cookieAuthenticator.authenticateToken, async (req, res) 
 
 router.get('/getGeoJson',  cookieAuthenticator.authenticateToken, async (req, res) => {
     return await mapController.getGeoJson(req, res);
+})
+
+router.post('/getLocationGeoJson',  cookieAuthenticator.authenticateToken, async (req, res) => {
+    return await mapController.getLocationGeoJson(req, res);
 })
 
 export default router;

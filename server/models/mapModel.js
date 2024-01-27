@@ -8,6 +8,17 @@ async function getUser(id) {
     return collection.findOne({_id: new ObjectId(id)});
 }
 
+async function getLocationById(userId, locTitle, gName) {
+    const user = await getUser(userId);
+    if (user) {
+        const group = user.groups[gName];
+        for (const location in group) {
+            if (group[location].locationTitle === locTitle)
+                return group[location];
+        }
+    }
+}
+
 async function getAllGroups(id) {
     const user = await getUser(id);
     return user.groups;
@@ -140,11 +151,13 @@ async function updateLocation(userId, locationInfo) {
 }
 
 
+
 export default {
     addLocation,
     removeLocation,
     expandGroup,
     getUser,
     getAllGroups,
-    updateLocation
+    updateLocation,
+    getLocationById
 };

@@ -132,7 +132,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
 
-
     function setupRadioBtnListener(radioBtn, section) {
         radioBtn.addEventListener("change", () => {
             console.log(`clicked ${radioBtn}`);
@@ -184,16 +183,43 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const isDelBtn = (button.name === 'del-btn') && (button.classList.contains('sidebar-action-button') || button.classList.contains('icon'));
         const isEditBtn =  (button.name === 'edit-btn') && (button.classList.contains('sidebar-action-button') || button.classList.contains('icon'));
-
+        const isGoToBtn = (button.name === 'goto-btn') && (button.classList.contains('sidebar-action-button') || button.classList.contains('icon'));
         if (isDelBtn) {
             const id = button.getAttribute('data-location-id');
             const title = button.getAttribute('data-location-title');
             const groupName = button.getAttribute('data-location-groupName');
             await removeLocation(id, title, groupName);
         } else if (isEditBtn) {
-            const id = button.getAttribute('data-loc-id');
+            const title = button.getAttribute('data-loc-id');
             const groupName = button.getAttribute('data-group-name');
-            await expandGroup(groupName, id)
+            await expandGroup(groupName, title)
+            // const loc = {locationTitle: title, groupName: groupName};
+            // const response = await fetch('/getLocationGeoJson', {
+            //     method: 'POST',
+            //     headers: {
+            //         'Content-Type': 'application/json'
+            //     },
+            //     body: JSON.stringify(loc)
+            // })
+            //
+            // if (response.ok) {
+            //     const responseData = await response.json();
+            //     mapbox.draw.add(responseData)
+            // } else {
+            //     console.error("Error fetching data. Status:", response.status);
+            // }
+
+            toggleDrawControl(mapbox.map, mapbox.draw);
+
+        } else if (isGoToBtn) {
+            const lng =  button.getAttribute('data-location-lng');
+            const lnt =  button.getAttribute('data-location-lnt');
+            console.log({lng, lnt})
+            mapbox.map.flyTo({
+                center: [lng, lnt],
+                zoom: 17,
+                essential: true
+            })
         }
     });
 
