@@ -57,6 +57,19 @@ npm run start
 
 # Technical Details <a name="technical-details"></a>
 
+Implemented:
+- Authentication via tokens
+- Routing
+- Frontend-backend communication (MVC)
+- backend-database communication (MVC)
+- Frontend-Mapbox API communication
+- Serverside rendering with PUG and Node JS
+- Dynamic component rendering with fetch await promises
+- Drawing shapes on the map
+- OOP for user structure in MongoDB
+- Unit tests
+  
+
 1. Utilization of UML for Project Design and Planning:
 I used Unified Modeling Language (UML) to plan and design this project. This involved creating diagrams to visualize the project's structure, like its different parts, how they relate to each other, and what they do. Using UML helped me organize the project in a clear and structured way, showing my ability to plan software projects thoughtfully.
 
@@ -76,8 +89,6 @@ In summary, this project reflects my commitment to learning and mastering softwa
 - Express
 - MongoDB
 
-Using MVC structure.
-
 ## UML 
 ### Use Case Diagram
 
@@ -89,13 +100,10 @@ Using MVC structure.
 
 I didn't add (due to time constraints):
 - Error indicators
-- Editing geometric shapes on map
+- Editing geometric shapes on the map
 - Weather data with OpenWeatherAPI
 - Full-screen mode
 - View settings
 - Navigation on map
 - Some details
-
-
-
-
+- Could spend more time on input-checking
