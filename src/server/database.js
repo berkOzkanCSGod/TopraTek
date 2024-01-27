@@ -1,6 +1,6 @@
 import { MongoClient } from "mongodb";
 
-const connectionString = "mongodb+srv://bilmart888:a39F108BA7@cluster0.rmgik7n.mongodb.net/TopraTek";
+const connectionString = "[connection-string]";
 const dbName = "TopraTek";
 const client = new MongoClient(connectionString);
 

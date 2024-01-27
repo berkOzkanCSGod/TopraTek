@@ -1,6 +1,6 @@
 /*eslint-disable*/
 
-mapboxgl.accessToken = 'pk.eyJ1IjoiYmVya296a2FuIiwiYSI6ImNreWVzZngxNTFiczQyb3BiMWl0MmhheGEifQ.h9Il5KFECwOawPRMOEHYpg';
+mapboxgl.accessToken = '[api-key]';
 
 const map = new mapboxgl.Map({
     container: 'map',
