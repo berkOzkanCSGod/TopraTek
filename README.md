@@ -33,9 +33,11 @@ Welcome to TopraTek! This project aims to provide a comprehensive mapping soluti
   <img width="300" alt="Screenshot 2024-01-27 at 10 15 49" src="https://github.com/berkOzkanCSGod/TopraTek/assets/82842011/2b390c1e-cdbf-4454-a07f-f5e1fa695d79">
   <img width="550" alt="Screenshot 2024-01-27 at 10 39 33" src="https://github.com/berkOzkanCSGod/TopraTek/assets/82842011/f8c0aadf-032d-45f9-86d5-cb45772b8117">
 </div>
+
 ### Data Visualization
 - Visualize your land and all associated data on an interactive map for easy reference and analysis.
 - Gain insights into your farming operations by overlaying different layers of information.
+
 ### Getting Started
 -   To get started with TopraTek, follow these steps:
 
