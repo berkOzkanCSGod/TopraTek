@@ -39,7 +39,13 @@ Welcome to TopraTek! This project aims to provide a comprehensive mapping soluti
 - Gain insights into your farming operations by overlaying different layers of information.
 
 ### Getting Started
--   To get started with TopraTek, follow these steps:
+
+
+```diff
+@@ This won't work since I removed API and DB Keys @@
+```
+
+To get started with TopraTek, follow these steps:
 
 1. Pull repo
 2. Navigate to TopraTek folder
