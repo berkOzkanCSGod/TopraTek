@@ -1,5 +1,7 @@
 # TopraTeL: Farmer's Mapping Application
 
+[Technical Details (for employers)](#technical-details)
+
 *** Live demo will only be available until March 1st, 2024. berk[[dot]]ozkan[[at]]ug[[dot]]bilkent[[dot]]edu[[dot]]tr ***
 
 Welcome to TopraTek! This project aims to provide a comprehensive mapping solution tailored specifically for farmers. With this application, farmers can easily outline their land, label it, categorize locations, and record additional data such as current crop and crop planting history. Whether you're a small-scale farmer or managing large agricultural operations, this tool is designed to streamline your mapping and data recording processes.
