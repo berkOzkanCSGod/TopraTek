@@ -83,13 +83,13 @@ Implemented:
   
 
 1. Utilization of UML for Project Design and Planning:
-I used Unified Modeling Language (UML) to plan and design this project. This involved creating diagrams to visualize the project's structure, like its different parts, how they relate to each other, and what they do. Using UML helped me organize the project in a clear and structured way, showing my ability to plan software projects thoughtfully.
+I used Unified Modeling Language (UML) to plan and design this project. This involved creating diagrams to visualize the project's structure, how they relate to each other, and what they do. Using UML helped me organize the project in a clear and structured way, showing my ability to plan software projects thoughtfully.
 
-2. Embracing Vanilla JavaScript and Essential Tools:
-I deliberately chose to use only basic JavaScript and Node JS for this project. Instead of relying on frameworks or libraries, I wanted to understand how JavaScript and frontend-backend interactions work from the ground up. This hands-on approach allowed me to dive into core concepts, learning their details and best practices thoroughly. By doing so, I'm better equipped to handle various challenges in web development and beyond.
+2. Embracing Vanilla JavaScript:
+I deliberately chose to use vanilla JavaScript and Node JS for this project. Instead of relying on frameworks or libraries, I wanted to understand how JavaScript and frontend-backend interactions work from the ground up. This hands-on approach allowed me to dive into core concepts, learning their details and best practices thoroughly. By doing so, I'm better equipped to handle various challenges in web development and beyond.
 
 ** Personal anecdote **
-When developing this project I ran into a performance problem. I wanted to update features, such as the sidebar and map live when a user added a location, however, since PUG is a serverside template each change required a complete reload of the page. Then, I discovered HTMX, which helped me make some parts dynamic without reloading the page–greatly increasing performance. However, some feature updates required a more tailored approach (or I didn't know htmx well enough), so this led me to do routing and updating manually with vanilla JS fetch and awaits on the front end. And so, I was able to benefit from the superior performance of server-side rendering while keeping the site dynamic.
+When developing this project I ran into a performance problem. I wanted to update features, such as the sidebar and map live when a user added a location, however, since PUG is a serverside template engine each change required a complete reload of the page. Then, I discovered HTMX, which helped me make some parts dynamic without reloading the page–greatly increasing performance. However, some feature updates required a more tailored approach (or I didn't know htmx well enough), so this led me to do routing and updating manually with vanilla JS fetch and awaits on the frontend. And so, I was able to benefit from the superior performance of server-side rendering while keeping the site dynamic.
 
 In summary, this project reflects my commitment to learning and mastering software development techniques. It demonstrates my ability to plan projects systematically.
 
