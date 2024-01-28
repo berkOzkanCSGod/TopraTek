@@ -26,13 +26,15 @@ Welcome to TopraTek! This project aims to provide a comprehensive mapping soluti
 - Add labels to different areas of your land to identify specific features such as crops, buildings, water sources, etc.
 - Categorize locations based on various attributes like soil type, terrain features, irrigation methods, etc.
 
+<div style="display: flex;">
+  <img width="300" alt="Screenshot 2024-01-27 at 10 15 49" src="https://github.com/berkOzkanCSGod/TopraTek/assets/82842011/2b390c1e-cdbf-4454-a07f-f5e1fa695d79">
+  <img width="450" alt="Screenshot 2024-01-27 at 10 39 33" src="https://github.com/berkOzkanCSGod/TopraTek/assets/82842011/f8c0aadf-032d-45f9-86d5-cb45772b8117">
+</div>
+
+
 ### Crop Management
 - Record and track information about the current crop planted in each area of your land.
 - Maintain a history of crop rotations and planting schedules for better crop management practices.
-<div style="display: flex;">
-  <img width="300" alt="Screenshot 2024-01-27 at 10 15 49" src="https://github.com/berkOzkanCSGod/TopraTek/assets/82842011/2b390c1e-cdbf-4454-a07f-f5e1fa695d79">
-  <img width="550" alt="Screenshot 2024-01-27 at 10 39 33" src="https://github.com/berkOzkanCSGod/TopraTek/assets/82842011/f8c0aadf-032d-45f9-86d5-cb45772b8117">
-</div>
 
 ### Data Visualization
 - Visualize your land and all associated data on an interactive map for easy reference and analysis.
