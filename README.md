@@ -106,7 +106,7 @@ In summary, this project reflects my commitment to learning and mastering softwa
 
 <img width="797" alt="usecaseTT" src="https://github.com/berkOzkanCSGod/TopraTek/assets/82842011/d7f58ad4-1e58-4f66-8a9e-da07e3af23c8">
 
-### Sequence Diagram (all combined into two for easy reading) 
+### Sequence Diagram (all combined into one for easy reading) 
 
 <img width="553" alt="sqncTT" src="https://github.com/berkOzkanCSGod/TopraTek/assets/82842011/aca1e99e-bee6-4880-b72b-82b46c0a6ebf">
 
